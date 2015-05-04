@@ -82,7 +82,9 @@ npm install gulp-cache --save-dev
 
 then finally run
 gulp after the command line, got the message "finished the script after 27 ms"-if there is error message saying sass errored
-
+--------------------------------------------------
+To achieve >=90 page speed score on Mobile/desktop:
+--------------------------------------------------
 -4/27/15:I added async to line 24 of index.html, the page speed stays 28/30;
 I went back to Went to jpeg-optimizer.com/  this time to set compression level at 10%; click the "analyse" button again at the page Speed insight site, and got Mobile/desktop 59/87 score;
 4/28: run page speed insight, got a score for Mobile/desktop 71/81;
@@ -91,8 +93,11 @@ inline entire style.css to index.html-removing media only css rule, remove font 
 -resize pizzeria to 300px width: Mobile/desktop 88/89;
 -resize pizzeria to 200px width: Mobile/desktop score 93/94.
 -change font to Pacifico, still 93/94.
-
-
+--------------------------------------------
+To achieve >=60 FPS for pizza.html page:
+--------------------------------------------
+4/30:first uncomment style.css about the border style to show the borders.
+at the command prompt, "cd udportfolio/views", then "python -m SimpleHTTPServer 8080"
 
 
 
