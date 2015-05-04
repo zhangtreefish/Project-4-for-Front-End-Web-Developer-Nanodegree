@@ -63,3 +63,46 @@ Feeling uninspired by the portfolio? Here's a list of cool portfolios I found af
 * <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
 * <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
 * <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+Below is what I did in response to pageSpeedInsight's suggestions:
+1. The beginning page speed score is 28/100 for mobile and 30/100 for desktop.
+2. To compress pizzeria.jpg, I went to: http://www.jpeg-optimizer.com/, and checked compress image with compression level set at 1%. The resulting image looks bad on the webpage. The page speed does improve, the score is now at 73/84 for mobile/desktop;
+Went to jpeg-optimizer.com/ again this time to compress profilepic with compression rate set at 90% resulting in some saving.
+3. Since the pizzeria image looks bad,I decide to redo. I copied the original pizzeria which I happened to have saved at another location to the project directory udportfolio
+4. 4/27/2015: I redo the pageSpeedInsight analysis, same result as in 1, i.e., page speed score is 28/100 for mobile and 30/100 for desktop.
+5. installed gulp ruby and sass. typed in after command line
+node -v
+npm install -g gulp
+npm install gulp --save-dev
+npm install gulp-concat --save-dev
+npm install gulp-uglify gulp-rename --save-dev
+npm install --save-dev gulp-ruby-sass
+npm install gulp-imagemin --save-dev
+npm install gulp-cache --save-dev
+
+
+then finally run
+gulp after the command line, got the message "finished the script after 27 ms"-if there is error message saying sass errored
+
+-4/27/15:I added async to line 24 of index.html, the page speed stays 28/30;
+I went back to Went to jpeg-optimizer.com/  this time to set compression level at 10%; click the "analyse" button again at the page Speed insight site, and got Mobile/desktop 59/87 score;
+4/28: run page speed insight, got a score for Mobile/desktop 71/81;
+-add media="print" to line 14 of index.html css rule, page speed improves to 77/90;
+inline entire style.css to index.html-removing media only css rule, remove font url and style.css at index.html, page speed to 84/85;
+-resize pizzeria to 300px width: Mobile/desktop 88/89;
+-resize pizzeria to 200px width: Mobile/desktop score 93/94.
+-change font to Pacifico, still 93/94.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+w
