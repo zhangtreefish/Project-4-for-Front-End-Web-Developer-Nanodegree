@@ -1,98 +1,18 @@
 ## Website Performance Optimization portfolio project
-
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
-
-To get started, check out the repository, inspect the code,
-
-### Getting started
-
-Some useful tips to help you get started:
-
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
-
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
-
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
-
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ngrok 8080
-  ```
-
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
-
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
-
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
-
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
-
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
-
-### Sample Portfolios
-
-Feeling uninspired by the portfolio? Here's a list of cool portfolios I found after a few minutes of Googling.
-
-* <a href="http://www.reddit.com/r/webdev/comments/280qkr/would_anybody_like_to_post_their_portfolio_site/">A great discussion about portfolios on reddit</a>
-* <a href="http://ianlunn.co.uk/">http://ianlunn.co.uk/</a>
-* <a href="http://www.adhamdannaway.com/portfolio">http://www.adhamdannaway.com/portfolio</a>
-* <a href="http://www.timboelaars.nl/">http://www.timboelaars.nl/</a>
-* <a href="http://futoryan.prosite.com/">http://futoryan.prosite.com/</a>
-* <a href="http://playonpixels.prosite.com/21591/projects">http://playonpixels.prosite.com/21591/projects</a>
-* <a href="http://colintrenter.prosite.com/">http://colintrenter.prosite.com/</a>
-* <a href="http://calebmorris.prosite.com/">http://calebmorris.prosite.com/</a>
-* <a href="http://www.cullywright.com/">http://www.cullywright.com/</a>
-* <a href="http://yourjustlucky.com/">http://yourjustlucky.com/</a>
-* <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
-* <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
-* <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
-Below is what I did in response to pageSpeedInsight's suggestions:
-1. The beginning page speed score is 28/100 for mobile and 30/100 for desktop.
-2. To compress pizzeria.jpg, I went to: http://www.jpeg-optimizer.com/, and checked compress image with compression level set at 1%. The resulting image looks bad on the webpage. The page speed does improve, the score is now at 73/84 for mobile/desktop;
-Went to jpeg-optimizer.com/ again this time to compress profilepic with compression rate set at 90% resulting in some saving.
-3. Since the pizzeria image looks bad,I decide to redo. I copied the original pizzeria which I happened to have saved at another location to the project directory udportfolio
-4. 4/27/2015: I redo the pageSpeedInsight analysis, same result as in 1, i.e., page speed score is 28/100 for mobile and 30/100 for desktop.
-5. installed gulp ruby and sass. typed in after command line
-node -v
-npm install -g gulp
-npm install gulp --save-dev
-npm install gulp-concat --save-dev
-npm install gulp-uglify gulp-rename --save-dev
-npm install --save-dev gulp-ruby-sass
-npm install gulp-imagemin --save-dev
-npm install gulp-cache --save-dev
-
-
-then finally run
-gulp after the command line, got the message "finished the script after 27 ms"-if there is error message saying sass errored
 --------------------------------------------------
 To achieve >=90 page speed score on Mobile/desktop:
 --------------------------------------------------
--4/27/15:I added async to line 24 of index.html, the page speed stays 28/30;
-I went back to Went to jpeg-optimizer.com/  this time to set compression level at 10%; click the "analyse" button again at the page Speed insight site, and got Mobile/desktop 59/87 score;
-4/28: run page speed insight, got a score for Mobile/desktop 71/81;
--add media="print" to line 14 of index.html css rule, page speed improves to 77/90;
-inline entire style.css to index.html-removing media only css rule, remove font url and style.css at index.html, page speed to 84/85;
--resize pizzeria to 300px width: Mobile/desktop 88/89;
--resize pizzeria to 200px width: Mobile/desktop score 93/94.
--change font to Pacifico, still 93/94.
+-I added async to line 24 of index.html, the page speed stays 28/30;
+
+-I went back to jpeg-optimizer.com/ to compress the profilepic with compression level set at 10%; click the "analyse" button again at the page Speed insight site, and got Mobile/desktop score of 59/87;On a different day I ran page speed insight,and got a slightly different score for Mobile/desktop: 71/81;
+
+-I added media="print" to line 14 of index.html css rule, page speed improves to 77/90;
+
+-I inlined the entire style.css to index.html-removing media only css rule, removed font url and style.css at index.html, and the page speed rose to 84/85;
+
+-I resized pizzeria to 300px width, and the Mobile/desktop score increased to 88/89;
+-I resized pizzeria to 200px width, and the Mobile/desktop score lept to 93/94.
+-I changed font to Pacifico, still 93/94.
 --------------------------------------------
 To achieve >=60 FPS for pizza.html page:
 --------------------------------------------
