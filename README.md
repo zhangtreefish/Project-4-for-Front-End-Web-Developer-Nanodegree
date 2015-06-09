@@ -1,4 +1,4 @@
-## Website Performance Optimization portfolio project
+## Website Performance Optimization portfolio project 
 --------------------------------------------------
 To achieve >=90 page speed score on Mobile/desktop:
 --------------------------------------------------
@@ -34,3 +34,5 @@ Changes made in main.js and stle.css for better framerate of pizza.html:
 -I replaced style.width's reset with style.transform in updatePosition(line 494) to avoid forced synchronous layout; To match I added "will-change:transform; transform:translateZ(0);" to .mover class.
 
 -With the above changes, the average time to generate 1 frame is at around 0.4 ms, less than 1 ms. 
+
+After revising per reviewer comments, I add and commit at git gh-pages branch, push to origin; checkout master, git rebase gh-pages, git log to verify fast forward. 
