@@ -1,4 +1,4 @@
-/** {
+/* {
   outline: 1px solid blue !important;
 }*/
 * {
@@ -28,21 +28,23 @@ form {
 #pizzaSize {
   font-weight: 800;
 }
+
 /*moved style.width and style.height from main.js */
 .mover {
   position: fixed;
-  /*width: 256px;*/
-  width: 20px;
-  height:40px;
+  width: 40px;
   z-index: -1;
+  will-change:transform;
+  transform:translateZ(0);
 }
 
 /* moved the width and height property from main.js */
 .randomPizzaContainer {
   float: left;
   display: flex;
+  flex-wrap:wrap;
   width:33%;
-  height: 365px;
+  height: 325px;
 }
 
 .randomPizzaContainer:after {
