@@ -15,18 +15,22 @@ To achieve >=90 page speed score on Mobile/desktop:
 -------------------------------------------------------------------------------------
 To achieve >=60 FPS for pizza.html page:
 --------------------------------------------------------------
-(I first uncommented style.css about the border style to show the borders.)
+Changes made in main.js and stle.css for better framerate of pizza.html:
 
--In makeRandomPizza, I simplified by subsituting NumOfItems for NumsOfCheese, NumsOfMeats,etc.;
+-In makeRandomPizza, I simplified by subsituting NumOfItems (line 340) for NumsOfCheese, NumsOfMeats,etc.
 
--In pizzaElementGenerator I moved style.width and style.height to the css rule .randomPizzaContainer in style.css;
+-In pizzaElementGenerator (line 373) I moved style.width and style.height reset in main.js to style.css .randomPizzaContainer
 
--In changePizzaSizes, I changed the pizza size value to a percent width, remove the codes involving offsetWidth and complicated calculations to improve FPS;
+-In changePizzaSizes, I changed the pizza size value to a percent width (line 438), removing the codes involving offsetWidth and complicated calculations to improve FPS
 
--I reduce the pizza number to 50 in the for loop to populate #randomPizzas (line 460) and in document.addEventListener (line 522);
+-I reduced the pizza number to a smaller number 51 in the for loop to populate #randomPizzas (line 456)
 
--I moved the width property of .mover in document.addEventListener to style.css, and removed style.height property alltogether;
+-I set the pizza number in document.addEventListener and set the sliding pizza position dynamically (line 519);
 
--I removed updatePositions() from the Event Listener-because only window event listener needs to call it.
+-I moved the width and height property of .mover in document.addEventListener (line 513) inside main.js to style.css;to ensure proper positioning I also added "flex-wrap:wrap;" to .randomPizzaContainer which contains the .mover pizza objects.
 
--With the above changes, the average time to generate 1 frame is less than 1 ms. 
+-I removed updatePositions() from the end of the Event Listener-because it is not needed for the initial load-plus window event listener (line 507) is already set to call it.
+
+-I replaced style.width's reset with style.transform in updatePosition(line 494) to avoid forced synchronous layout; To match I added "will-change:transform; transform:translateZ(0);" to .mover class.
+
+-With the above changes, the average time to generate 1 frame is at around 0.4 ms, less than 1 ms. 
