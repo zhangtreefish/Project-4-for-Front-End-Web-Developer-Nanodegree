@@ -27,10 +27,12 @@ Changes made in main.js and stle.css for better framerate of pizza.html:
 
 -I set the pizza number in document.addEventListener and set the sliding pizza position dynamically (line 519);
 
--I moved the width and height property of .mover in document.addEventListener (line 513) inside main.js to style.css;to ensure proper positioning I also added "flex-wrap:wrap;" to .randomPizzaContainer which contains the .mover pizza objects.
+-I moved the width and height property of .mover in document.addEventListener (line 513) inside main.js to style.css;I removed "elem.basicLeft = (i % colNum) * colWidth;" , and instead added "flex-wrap:wrap;" to .randomPizzaContainer which contains the .mover pizza objects to ensure proper positioning. In document.addEventListener I also changed the row and col numbers of the sliding pizzas to smaller numbers (lines 517, 518) so that the total pizza number is smaller (at 40).
 
 -I removed updatePositions() from the end of the Event Listener-because it is not needed for the initial load-plus window event listener (line 507) is already set to call it.
 
 -I replaced style.width's reset with style.transform in updatePosition(line 494) to avoid forced synchronous layout; To match I added "will-change:transform; transform:translateZ(0);" to .mover class.
 
--With the above changes, the average time to generate 1 frame is at around 0.4 ms, less than 1 ms. 
+-added "use strict"; at the beginning of the main.js, the purpise is to "changes previously accepted "bad syntax" into real errors."(W3 Schools)
+
+-With the above changes, the average time to generate 1 frame is at around 0.6 ms, less than 1 ms. 
