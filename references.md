@@ -22,3 +22,4 @@
 21: css trigger.com
 22: to learn scrollTop(): http://api.jquery.com/scrollTop/
 23: to learn how to use translate: http://stackoverflow.com/questions/8143953/css3-alternative-for-translate3d
+24: CSS hardware acceleration: http://www.smashingmagazine.com/2012/06/21/play-with-hardware-accelerated-css/
