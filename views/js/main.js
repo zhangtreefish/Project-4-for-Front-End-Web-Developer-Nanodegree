@@ -333,7 +333,8 @@ var ingredientItemizer = function(string) {
   return "<li>" + string + "</li>";
 }
 
-// Returns a string with random pizza ingredients nested inside <li> tags; Here I simplified with NumOfItems
+/* Returns a string with random pizza ingredients nested inside <li> tags; Here I simplified
+by declaring just one variable NumOfItems instead of several */
 var makeRandomPizza = function() {
   var pizza = "";
   var numberOfItems = Math.floor((Math.random() * 2));
@@ -354,7 +355,8 @@ var makeRandomPizza = function() {
   pizza = pizza + ingredientItemizer(selectRandomCrust());
   return pizza;
 }
-// returns a DOM element for each pizza, here I moved style.width and style.height to css .randomPizzaContainer
+/* returns a DOM element for each pizza, here I moved style.width and style.height to style.css,
+under .randomPizzaContainer */
 var pizzaElementGenerator = function(i) {
   var pizzaContainer,             // contains pizza title, image and list of ingredients
       pizzaImageContainer,        // contains the pizza image
@@ -378,7 +380,6 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.appendChild(pizzaImageContainer);
 
   pizzaDescriptionContainer.classList.add("col-md-6");
-
   pizzaName = document.createElement("h4");
   pizzaName.innerHTML = randomName();
   pizzaDescriptionContainer.appendChild(pizzaName);
@@ -387,14 +388,13 @@ var pizzaElementGenerator = function(i) {
   ul.innerHTML = makeRandomPizza();
   pizzaDescriptionContainer.appendChild(ul);
   pizzaContainer.appendChild(pizzaDescriptionContainer);
-  //pizzaContainer.appendChild(ul);
 
   return pizzaContainer;
 }
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) {
-  window.performance.mark("mark_start_resize");   // User Timing API function
+  window.performance.mark("mark_start_resize");       // User Timing API function
 
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
@@ -415,7 +415,8 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Changes the pizza size value to a percent width, remove the codes involving offsetWidth and complicated calculations to improve FPS
+  /* Here I changed the pizza size value to a percent width, removed the codes involving offsetWidth
+  and complicated calculations to improve FPS per class Browser Rendering Optimization Lesson 5.*/
   var newWidth;
   function changePizzaSizes(size) {
     switch(size) {
@@ -445,14 +446,14 @@ var resizePizzas = function(size) {
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-}//resizePizzas
+}//closing resizePizzas
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
-/* This for-loop actually creates and appends all of the random pizzas when the page loads;
-here I moved the DOM call to pizzaDiv outside the for loop*/
+/* This for-loop actually creates and appends all but the first two of the random pizzas when the page
+oads;here I moved the DOM call to pizzaDiv outside the for loop; I also decreased the number to 51 */
 var pizzasDiv = document.getElementById("randomPizzas");
-for (var i = 2; i < 50; i++) {
+for (var i = 2; i < 51; i++) {
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -489,13 +490,11 @@ function updatePositions() {
   var phaseBase=document.body.scrollTop / 1250;
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin(phaseBase + (i % 5));
-    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
     var scoot = (i % 5)*256 + 100 * phase + 'px';
-    items[i].style.transform="translateX("+scoot+")";
+    items[i].style.transform="translateX("+scoot+")";//used to be items[i].style.left = ...
   }
 
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
+  // User Timing API to the rescue again. Seriously, it's worth learning. Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
   if (frame % 10 === 0) {
