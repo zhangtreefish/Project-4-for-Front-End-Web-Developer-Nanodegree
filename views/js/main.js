@@ -484,6 +484,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 /* Moves the sliding background pizzas based on scroll position. Here I moved some calculation
 to outside the for loop. I also used transform to achieve repositioning */
+
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
