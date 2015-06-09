@@ -483,7 +483,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 /* Moves the sliding background pizzas based on scroll position. Here I moved some calculation
-to outside the for loop. I also used translateX to achieve repositioning */
+to outside the for loop. I also used translate3d to achieve repositioning */
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -512,11 +512,12 @@ window.addEventListener('scroll', updatePositions);
 /* Generates the sliding pizzas when the page loads.Here I calculated the pizza numbers needed to
 populate the viewpoert dynamically by utilizing innerHeight property of window; also moved the width
 and height property of .mover to style.css;removed updatePositions() from the Event Listener-
-because only window event listener needs to call it*/
+because only window event listener needs to call it; removed elem.basicLeft = (i % cols) * s-instead use
+flex-wrap:wrap at .movingPizzaContainer to achieve positioning*/
 document.addEventListener('DOMContentLoaded', function() {
   var colNum = 8;
   var rowNum=5;
-  var colWidth = Math.floor(window.innerWidth/colNum);
+  //var colWidth = Math.floor(window.innerWidth/colNum);
   var rowHeight=Math.floor(window.innerHeight/rowNum);
   var pizzaNum = colNum*rowNum;
   var movingPizzas=document.getElementById("movingPizzas1");
@@ -525,6 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.top = (Math.floor(i / colNum) * rowHeight) + 'px';
+    //elem.basicLeft = (i % colNum) * colWidth;
     movingPizzas.appendChild(elem);
   }
 });
