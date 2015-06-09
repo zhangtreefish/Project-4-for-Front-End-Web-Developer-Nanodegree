@@ -1,0 +1,59 @@
+/* {
+  outline: 1px solid blue !important;
+}*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -box-sizing: border-box;
+}
+
+body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background: black;
+}
+
+input {
+  background: grey;
+  font-size: 18px;
+}
+
+form {
+  display: inline-block;
+}
+
+.centered {
+  text-align: center;
+}
+
+#pizzaSize {
+  font-weight: 800;
+}
+
+/*moved style.width and style.height from main.js */
+.mover {
+  position: fixed;
+  width: 40px;
+  z-index: -1;
+  will-change:transform;
+  transform:translateZ(0);
+}
+
+/* moved the width and height property from main.js */
+.randomPizzaContainer {
+  float: left;
+  display: flex;
+  flex-wrap:wrap;
+  width:33%;
+  height: 325px;
+}
+
+.randomPizzaContainer:after {
+  content: "";
+  display: table;
+  clear:both;
+}
+
+ .container {
+  background-color: rgba(240, 60, 60, 0.8);
+}
+
