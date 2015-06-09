@@ -483,18 +483,16 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 /* Moves the sliding background pizzas based on scroll position. Here I moved some calculation
-to outside the for loop. I also used translate3d to achieve repositioning */
+to outside the for loop. I also used transform to achieve repositioning */
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName('mover');//? where is .mover defined? ln 529
   var phaseBase=document.body.scrollTop / 1250;
-  var colWidth = Math.floor(window.innerWidth/8);
   for (var i = 0; i < items.length; i++) {
-    var phase = colWidth *(Math.sin(phaseBase + (i % 8)))+ 'px';
-    //items[i].style.transform="translateX("+phase+")";//used to be items[i].style.left = ...
-    items[i].style.transform="translate3d("+phase+",0,0)";
+    var phase =Math.sin(phaseBase + (i % 8)) * 100+"px";
+    items[i].style.transform="translate3d("+phase+",0,0)";//used to be items[i].style.left = ...
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning. Super easy to create custom metrics.
@@ -509,15 +507,14 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
-/* Generates the sliding pizzas when the page loads.Here I calculated the pizza numbers needed to
-populate the viewpoert dynamically by utilizing innerHeight property of window; also moved the width
+/* Generates the sliding pizzas when the page loads.Here I calculated the pizza numbers and populate
+the viewpoert dynamically by utilizing innerHeight property of window; also moved the width
 and height property of .mover to style.css;removed updatePositions() from the Event Listener-
 because only window event listener needs to call it; removed elem.basicLeft = (i % cols) * s-instead use
 flex-wrap:wrap at .movingPizzaContainer to achieve positioning*/
 document.addEventListener('DOMContentLoaded', function() {
   var colNum = 8;
   var rowNum=5;
-  //var colWidth = Math.floor(window.innerWidth/colNum);
   var rowHeight=Math.floor(window.innerHeight/rowNum);
   var pizzaNum = colNum*rowNum;
   var movingPizzas=document.getElementById("movingPizzas1");
@@ -526,7 +523,6 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.top = (Math.floor(i / colNum) * rowHeight) + 'px';
-    //elem.basicLeft = (i % colNum) * colWidth;
     movingPizzas.appendChild(elem);
   }
-});
+ });
