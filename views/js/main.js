@@ -19,6 +19,8 @@ cameron *at* udacity *dot* com
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 
+// Whole-script strict mode syntax, added per reviewer suggestion
+"use strict";
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -421,13 +423,13 @@ var resizePizzas = function(size) {
   function changePizzaSizes(size) {
     switch(size) {
         case "1":
-          newWidth=10;
+          newWidth=25;
           break;
         case "2":
-          newWidth=15;
+          newWidth=33;
           break;
         case "3":
-          newWidth=25;
+          newWidth=50;
           break;
         default:
           console.log("bug in sizeSwitcher");
@@ -439,7 +441,7 @@ var resizePizzas = function(size) {
     }
   }
 
-    changePizzaSizes(size);
+  changePizzaSizes(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
@@ -488,10 +490,11 @@ function updatePositions() {
 
   var items = document.getElementsByClassName('mover');//? where is .mover defined? ln 529
   var phaseBase=document.body.scrollTop / 1250;
+  var colWidth = Math.floor(window.innerWidth/8);
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(phaseBase + (i % 5));
-    var scoot = (i % 5)*256 + 100 * phase + 'px';
-    items[i].style.transform="translateX("+scoot+")";//used to be items[i].style.left = ...
+    var phase = colWidth *(Math.sin(phaseBase + (i % 8)))+ 'px';
+    //items[i].style.transform="translateX("+phase+")";//used to be items[i].style.left = ...
+    items[i].style.transform="translate3d("+phase+",0,0)";
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning. Super easy to create custom metrics.
@@ -511,16 +514,17 @@ populate the viewpoert dynamically by utilizing innerHeight property of window; 
 and height property of .mover to style.css;removed updatePositions() from the Event Listener-
 because only window event listener needs to call it*/
 document.addEventListener('DOMContentLoaded', function() {
-  var colNum = 6;
-  var rowNum=10;
+  var colNum = 8;
+  var rowNum=5;
   var colWidth = Math.floor(window.innerWidth/colNum);
+  var rowHeight=Math.floor(window.innerHeight/rowNum);
   var pizzaNum = colNum*rowNum;
   var movingPizzas=document.getElementById("movingPizzas1");
   for (var i = 0; i < pizzaNum; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    elem.style.top = (Math.floor(i / colNum) * colWidth) + 'px';
+    elem.style.top = (Math.floor(i / colNum) * rowHeight) + 'px';
     movingPizzas.appendChild(elem);
   }
 });
