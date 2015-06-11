@@ -1,16 +1,12 @@
 /*
 Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
 jank-free at 60 frames per second.
-
 There are two major issues in this code that lead to sub-60fps performance. Can
 you spot and fix both?
-
-
 Built into the code, you'll find a few instances of the User Timing API
 (window.performance), which will be console.log()ing frame rate data into the
 browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
@@ -492,7 +488,7 @@ function updatePositions() {
   var items = document.getElementsByClassName('mover');//? where is .mover defined? ln 529
   var phaseBase=document.body.scrollTop / 1250;
   for (var i = 0; i < items.length; i++) {
-    var phase =Math.sin(phaseBase + (i % 8)) * 100+"px";
+    var phase =Math.sin(phaseBase + (i % 8)) * 200+"px";
     items[i].style.transform="translate3d("+phase+",0,0)";//used to be items[i].style.left = ...
   }
 
@@ -517,6 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var colNum = 8;
   var rowNum=5;
   var rowHeight=Math.floor(window.innerHeight/rowNum);
+  var colWidth = Math.floor(window.innerWidth/colNum);
   var pizzaNum = colNum*rowNum;
   var movingPizzas=document.getElementById("movingPizzas1");
   for (var i = 0; i < pizzaNum; i++) {
@@ -524,6 +521,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.top = (Math.floor(i / colNum) * rowHeight) + 'px';
+    elem.basicLeft = (i % colNum) * colWidth;
     movingPizzas.appendChild(elem);
   }
- });
+});
