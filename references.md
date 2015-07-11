@@ -24,3 +24,5 @@
 23: to learn how to use translate: http://stackoverflow.com/questions/8143953/css3-alternative-for-translate3d
 24: CSS hardware acceleration: http://www.smashingmagazine.com/2012/06/21/play-with-hardware-accelerated-css/
 25: On "Don't ask for computed styles excessively": http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
+26: On the benefit of requestAnimationFrame: http://html5hub.com/request-animation-frame-for-better-performance/
+27: Zgavin1's project 4 at github: https://github.com/zgavin1/udportfolio/blob/master/views/js/main.js
