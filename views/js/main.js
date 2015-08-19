@@ -1,22 +1,5 @@
-/*
-Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
-jank-free at 60 frames per second.
-There are two major issues in this code that lead to sub-60fps performance. Can
-you spot and fix both?
-Built into the code, you'll find a few instances of the User Timing API
-(window.performance), which will be console.log()ing frame rate data into the
-browser console. To learn more about User Timing API, check out:
-http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-Creator:
-Cameron Pittman, Udacity Course Developer
-cameron *at* udacity *dot* com
-*/
-
-// As you may have realized, this website randomly generates pizzas.
+//This website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
-
-// Whole-script strict mode syntax, added per reviewer suggestion
-"use strict";
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -331,30 +314,33 @@ var ingredientItemizer = function(string) {
   return "<li>" + string + "</li>";
 }
 
-/* Returns a string with random pizza ingredients nested inside <li> tags; Here I simplified
-by declaring just one variable NumOfItems instead of several */
+// Returns a string with random pizza ingredients nested inside <li> tags
 var makeRandomPizza = function() {
   var pizza = "";
-  var numberOfItems = Math.floor((Math.random() * 2));
 
-  for (var i = 0; i < numberOfItems; i++) {
+  var numberOfMeats = Math.floor((Math.random() * 4));
+  var numberOfNonMeats = Math.floor((Math.random() * 3));
+  var numberOfCheeses = Math.floor((Math.random() * 2));
+
+  for (var i = 0; i < numberOfMeats; i++) {
     pizza = pizza + ingredientItemizer(selectRandomMeat());
   }
 
-  for (var i = 0; i < numberOfItems; i++) {
+  for (var i = 0; i < numberOfNonMeats; i++) {
     pizza = pizza + ingredientItemizer(selectRandomNonMeat());
   }
 
-  for (var i = 0; i < numberOfItems; i++) {
+  for (var i = 0; i < numberOfCheeses; i++) {
     pizza = pizza + ingredientItemizer(selectRandomCheese());
   }
 
   pizza = pizza + ingredientItemizer(selectRandomSauce());
   pizza = pizza + ingredientItemizer(selectRandomCrust());
+
   return pizza;
 }
-/* returns a DOM element for each pizza, here I moved style.width and style.height to style.css,
-under .randomPizzaContainer */
+
+// returns a DOM element for each pizza
 var pizzaElementGenerator = function(i) {
   var pizzaContainer,             // contains pizza title, image and list of ingredients
       pizzaImageContainer,        // contains the pizza image
@@ -369,6 +355,8 @@ var pizzaElementGenerator = function(i) {
   pizzaDescriptionContainer = document.createElement("div");
 
   pizzaContainer.classList.add("randomPizzaContainer");
+  pizzaContainer.style.width = "33.33%";
+  pizzaContainer.style.height = "325px";
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
   pizzaImageContainer.classList.add("col-md-6");
 
@@ -377,7 +365,9 @@ var pizzaElementGenerator = function(i) {
   pizzaImageContainer.appendChild(pizzaImage);
   pizzaContainer.appendChild(pizzaImageContainer);
 
+
   pizzaDescriptionContainer.classList.add("col-md-6");
+
   pizzaName = document.createElement("h4");
   pizzaName.innerHTML = randomName();
   pizzaDescriptionContainer.appendChild(pizzaName);
@@ -392,19 +382,19 @@ var pizzaElementGenerator = function(i) {
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) {
-  window.performance.mark("mark_start_resize");       // User Timing API function
+  window.performance.mark("mark_start_resize");   // User Timing API function
 
   // Changes the value for the size of the pizza above the slider
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.getElementById("pizzaSize").innerHTML = "Small";
+        document.querySelector("#pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.getElementById("pizzaSize").innerHTML = "Medium";
+        document.querySelector("#pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.getElementById("pizzaSize").innerHTML = "Large";
+        document.querySelector("#pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -444,7 +434,7 @@ var resizePizzas = function(size) {
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-}//closing resizePizzas
+}
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
@@ -472,31 +462,28 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
     sum = sum + times[i].duration;
   }
-  console.log("Average time to generate each of the last 10 frames: " + sum / 10 + "ms");
+  console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-/* Moves the sliding background pizzas based on scroll position. Here I moved some calculation
-to outside the for loop. I also used transform to achieve repositioning */
-
+/* Moves the sliding background pizzas based on scroll position. Here I moved some caluculation to outside the loop.*/
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName('mover');//? where is .mover defined? ln 529
+  var num = items.length;
   var phaseBase=document.body.scrollTop / 1250;
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(phaseBase + i % 8) * 100 + "px";//without basicLeft, centered but narrow
-    //var phase = (i % 8) * 200 + Math.sin(phaseBase + i % 8) * 100 + "px";
-    //console.log(items[i].basicLeft);//doing this line would have caused a large paint budget
-    //var phase = Math.sin(phaseBase + (i % 8));
-    //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.transform = "translate3d(" + phase + ",0,0)";//used to be items[i].style.left = ...
+  for (var i = 0; i < num; i++) {
+    var phase = Math.sin(phaseBase + (i % 5));
+
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
-  // User Timing API to the rescue again. Seriously, it's worth learning. Super easy to create custom metrics.
+  // User Timing API to the rescue again. Seriously, it's worth learning.
+  // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
   if (frame % 10 === 0) {
@@ -505,30 +492,25 @@ function updatePositions() {
   }
 }
 
-// runs updatePositions on scroll; here I added requestAnimationFrame to
-window.addEventListener('scroll', function() {
-  window.requestAnimationFrame(updatePositions);
-});
+// runs updatePositions on scroll
+window.addEventListener('scroll', updatePositions);
 
-/* Generates the sliding pizzas when the page loads.Here I calculated the pizza numbers and populate
-the viewpoert dynamically by utilizing innerHeight property of window; also moved the width
-and height property of .mover to style.css;removed updatePositions() from the Event Listener-
-because only window event listener needs to call it; removed elem.basicLeft = (i % cols) * s-instead use
-flex-wrap:wrap at .movingPizzaContainer to achieve positioning*/
-document.addEventListener('DOMContentLoaded', function(){
-  var colNum = 8;
-  var rowNum=5;
-  var rowHeight=Math.floor(window.innerHeight/rowNum);
-  var colWidth = Math.floor(window.innerWidth/colNum);
-  var pizzaNum = colNum*rowNum;
+// Generates the sliding pizzas when the page loads.
+//Here I moved movingPizzas DOM construction outside the for loop
+//and added style information to .mover css stle
+document.addEventListener('DOMContentLoaded', function() {
+  var cols = 8;
+  var s = 256;
   var movingPizzas=document.getElementById("movingPizzas1");
-  for (var i = 0; i < pizzaNum; i++) {
+  for (var i = 0; i < 50; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    elem.style.top = (Math.floor(i / colNum) * rowHeight) + 'px';
-    elem.basicLeft = (i % colNum) * colWidth;
+    //elem.style.height = "100px";
+    elem.style.width = "73.333px";
+    elem.basicLeft = (i % cols) * s;
+    elem.style.top = (Math.floor(i / cols) * s) + 'px';
     movingPizzas.appendChild(elem);
-  }//closing for loop
-  //updatePositions();
+  }
+  updatePositions();
 });
