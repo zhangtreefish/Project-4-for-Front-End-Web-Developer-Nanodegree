@@ -478,7 +478,7 @@ function updatePositions() {
   var phaseBase=document.body.scrollTop / 1250;
   for (var i = 0; i < num; i++) {
     var phase = Math.sin(phaseBase + (i % 5));
-
+    //items[i].style.transform = 'translateX(' + (100*phase) + 'px)';
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -497,19 +497,23 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 //Here I moved movingPizzas DOM construction outside the for loop
-//and added style information to .mover css stle
+//and moved style information to .mover css stle; adjust the pizza
+//numbers to such that there are 8X5 of them set responsive to window size;
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
+  var colNum = 8;
+  var rowNum=5;
+  var rowHeight=Math.floor(window.innerHeight/rowNum);
+  var colWidth = Math.floor(window.innerWidth/colNum);
+  var pizzaNum = colNum*rowNum;
   var movingPizzas=document.getElementById("movingPizzas1");
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < pizzaNum; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     //elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    elem.basicLeft = (i % colNum) * colWidth;
+    elem.style.top = (Math.floor(i / colNum) * rowHeight) + 'px';
     movingPizzas.appendChild(elem);
   }
   updatePositions();
