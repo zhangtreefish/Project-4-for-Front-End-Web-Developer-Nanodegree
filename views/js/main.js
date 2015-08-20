@@ -1,5 +1,9 @@
 //This website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
+
+// Whole-script strict mode syntax, added per reviewer suggestion
+"use strict";
+
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -446,6 +450,7 @@ for (var i = 2; i < 51; i++) {
 }
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
+//Here I corrected the original mistake that time displayed is for each of the last 10 pizzas.
 window.performance.mark("mark_end_generating");
 window.performance.measure("measure_pizza_generation", "mark_start_generating", "mark_end_generating");
 var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
@@ -462,7 +467,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
     sum = sum + times[i].duration;
   }
-  console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
+  console.log("Average time to generate each of the last 10 frames: " + sum / 10 + "ms");
 }
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
@@ -478,7 +483,7 @@ function updatePositions() {
   var phaseBase=document.body.scrollTop / 1250;
   for (var i = 0; i < num; i++) {
     var phase = Math.sin(phaseBase + (i % 5));
-    //items[i].style.transform = 'translateX(' + (100*phase) + 'px)';
+    //items[i].style.transform = 'translateX(' + (100*phase) + 'px)';//not much gain in performance
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
