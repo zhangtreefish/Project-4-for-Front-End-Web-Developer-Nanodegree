@@ -1,6 +1,4 @@
 ## Website Performance Optimization portfolio project
-
-The web site is https://github.com/zhangtreefish/udportfolio. To test the page speed of index.html, open the link , and paste the website address to https://developers.google.com/speed/pagespeed/insights/
 --------------------------------------------------
 To achieve >=90 page speed score on Mobile/desktop:
 --------------------------------------------------
