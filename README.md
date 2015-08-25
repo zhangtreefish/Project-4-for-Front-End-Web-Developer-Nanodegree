@@ -1,7 +1,5 @@
 ## Website Performance Optimization portfolio project
-
-The web site is https://github.com/zhangtreefish/udportfolio. To test the page speed of index.html, open the link , and paste the website address to https://developers.google.com/speed/pagespeed/insights/
---------------------------------------------------
+-------------------------------------------------
 To achieve >=90 page speed score on Mobile/desktop:
 --------------------------------------------------
 -I added async to line 24 of index.html, the page speed stays 28/30;
@@ -12,7 +10,8 @@ To achieve >=90 page speed score on Mobile/desktop:
 
 -I inlined the entire style.css to index.html-removing media only css rule, removed font url and style.css at index.html, and the page speed rose to 84/85;
 
--I resized pizzeria to 200px width, and the Mobile/desktop score increased to 93/94;
+-I resized pizzeria to 1100px width and compressed to 10%, and the Mobile/desktop score increased to 91/92;
+(test the page speed at https://developers.google.com/speed/pagespeed/insights/)
 
 -------------------------------------------------------------------------------------
 To achieve >=60 FPS for pizza.html page:
