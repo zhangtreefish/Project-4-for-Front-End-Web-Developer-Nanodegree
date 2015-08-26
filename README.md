@@ -1,4 +1,5 @@
 ## Website Performance Optimization portfolio project
+Project website is at : http://zhangtreefish.github.io/udportfolio/
 
 To achieve >=90 page speed score on Mobile/desktop:
 --------------------------------------------------
@@ -12,7 +13,7 @@ To achieve >=90 page speed score on Mobile/desktop:
 
 -I resized pizzeria to 1100px width with a compression rate of 10%, and the Mobile/desktop score increased to 91/92.
 
-To Test the Page Speed:(for the uninitiated: for the pagespeed analysis to work, it takes a webpage url; such is not required to use DevTool of Chrome to analyze html page for timelines.)
+To Test the Page Speed by using ngrok:(for the uninitiated: for the pagespeed analysis to work, it takes a webpage url-either by the github.io site at the top of this file or through exposing local server through ngrok ; such is not required to use DevTool of Chrome to analyze html page for timelines.)
 
 1. First download python and install globally,then at the command prompt of Window,cd to the project directory and enter python -m SimpleHTTPServer 8080;
 
