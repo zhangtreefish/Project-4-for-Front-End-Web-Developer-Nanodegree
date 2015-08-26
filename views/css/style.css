@@ -35,7 +35,7 @@ form {
   width: 40px;
   z-index: -1;
   will-change:transform;
-  transform:translate3d(0,0,0);
+  transform:translateX();
 }
 
 /* moved the width and height property from main.js */
