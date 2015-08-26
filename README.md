@@ -10,7 +10,19 @@ To achieve >=90 page speed score on Mobile/desktop:
 
 -I inlined the entire style.css to index.html-removing media only css rule, removed font url and style.css at index.html, and the page speed rose to 84/85;
 
--I resized pizzeria to 200px width, and the Mobile/desktop score increased to 93/94;
+-I resized pizzeria to 1100px width with a compression rate of 10%, and the Mobile/desktop score increased to 91/92.
+
+To Test the Page Speed:(for the uninitiated: for the pagespeed analysis to work, it takes a webpage url; such is not required to use DevTool of Chrome to analyze html page for timelines.)
+
+1.First download python and install globally,then at the command prompt of Window,cd to the project directory and enter python -m SimpleHTTPServer 8080;
+
+2. Then download ngrok and put it in the project directory, at the same level with the index.html;
+
+3. Then double click the ngrok, and follow the prompt from ngrok -or go to another command prompt (this PC/File/open command prompt)- and type in the instructed line such as ngrok.exe http 8080. Tada!You are shown a window.
+
+4. Right click the mouse, click "Select all", and then highlight the line after forwarding-resembling  http://aac83ece.ngrok.io, click; open a new Chrome Canary tab, and paste the line in, Tada! There is the web page.
+
+5. Copy the web address to google's pageSpeedInsight site [https://developers.google.com/speed/pagespeed/insights/] to test the page speed.
 
 -------------------------------------------------------------------------------------
 To achieve >=60 FPS for pizza.html page:
@@ -27,7 +39,6 @@ Changes made in main.js and stle.css for better framerate of pizza.html:
 
 -I set the pizza number in document.addEventListener and set the sliding pizza position dynamically (line 519);
 
-
 -I moved the width and height property of .mover in document.addEventListener (line 513) inside main.js to style.css;I removed "elem.basicLeft = (i % colNum) * colWidth;" , and instead added "flex-wrap:wrap;" to .randomPizzaContainer which contains the .mover pizza objects to ensure proper positioning. In document.addEventListener I also changed the row and col numbers of the sliding pizzas to smaller numbers (lines 517, 518) so that the total pizza number is smaller (at 40).
 
 -I removed updatePositions() from the end of the Event Listener-because it is not needed for the initial load-plus window event listener (line 507) is already set to call it.
@@ -39,3 +50,5 @@ Changes made in main.js and stle.css for better framerate of pizza.html:
 -With the above changes, the average time to generate 1 frame is at around 0.6 ms, less than 1 ms.
 
 After revising per reviewer comments, I add and commit at git gh-pages branch, push to origin; checkout master, git rebase gh-pages, git log to verify fast forward.
+
+To examine timelines for pizza.html: use Ctrl Shift I to open Chrome Dev Tool, click on timeline, click on the Record button to start the recording and then click again to end the recording; examine the timelines and console messages to find FPS (frame per second) and time required for scrolling the pizza page and resizing pizza.
