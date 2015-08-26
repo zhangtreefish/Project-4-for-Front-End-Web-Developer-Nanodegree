@@ -14,7 +14,7 @@ To achieve >=90 page speed score on Mobile/desktop:
 
 To Test the Page Speed:(for the uninitiated: for the pagespeed analysis to work, it takes a webpage url; such is not required to use DevTool of Chrome to analyze html page for timelines.)
 
-1.First download python and install globally,then at the command prompt of Window,cd to the project directory and enter python -m SimpleHTTPServer 8080;
+1. First download python and install globally,then at the command prompt of Window,cd to the project directory and enter python -m SimpleHTTPServer 8080;
 
 2. Then download ngrok and put it in the project directory, at the same level with the index.html;
 
