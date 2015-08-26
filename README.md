@@ -1,5 +1,5 @@
 ## Website Performance Optimization portfolio project
---------------------------------------------------
+
 To achieve >=90 page speed score on Mobile/desktop:
 --------------------------------------------------
 -I added async to line 24 of index.html, the page speed stays 28/30;
