@@ -35,7 +35,7 @@ form {
   width: 40px;
   z-index: -1;
   will-change:transform;
-  transform:translateX();
+  transform:translateX();/*use backface-visibility: hidden; if use translate3d*/
 }
 
 /* moved the width and height property from main.js */
