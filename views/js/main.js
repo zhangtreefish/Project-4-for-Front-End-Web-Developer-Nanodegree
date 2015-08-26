@@ -473,7 +473,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-/* Moves the sliding background pizzas based on scroll position. Here I moved some caluculation to outside the loop.*/
+/* Moves the sliding background pizzas based on scroll position. Here I moved some caluculation to outside the loop.Also used translate X*/
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -483,7 +483,7 @@ function updatePositions() {
   var phaseBase=document.body.scrollTop / 1250;
   for (var i = 0; i < num; i++) {
     var phase = Math.sin(phaseBase + (i % 5));
-    items[i].style.transform = 'translateX(' + (100*phase) + 'px)';//not much gain in performance
+    items[i].style.transform = 'translateX(' + (100*phase) + 'px)';//not much gain in performance, but used anyway
     //items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //elem.style.height = "100px";
     elem.style.width = "73.333px";
     //elem.basicLeft = (i % colNum) * colWidth;
-    elem.style.left = (i % colNum) * colWidth + 'px';
+    elem.style.left = (i % colNum) * colWidth + 'px';//this is needed for doing translateX at line 486.
     elem.style.top = (Math.floor(i / colNum) * rowHeight) + 'px';
     movingPizzas.appendChild(elem);
   }
