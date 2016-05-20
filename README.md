@@ -1,65 +1,55 @@
 ## Website Performance Optimization portfolio project
+Project website is at : http://zhangtreefish.github.io/udportfolio/
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+To achieve >=90 page speed score on Mobile/desktop:
+--------------------------------------------------
+-I added async to line 24 of index.html, the page speed stays 28/30;
 
-To get started, check out the repository, inspect the code,
+-I went back to jpeg-optimizer.com/ to compress the profilepic with compression level set at 10%; click the "analyse" button again at the page Speed insight site, and got Mobile/desktop score of 59/87;On a different day I ran page speed insight,and got a slightly different score for Mobile/desktop: 71/81;
 
-### Getting started
+-I added media="print" to line 14 of index.html css rule, page speed improves to 77/90;
 
-Some useful tips to help you get started:
+-I inlined the entire style.css to index.html-removing media only css rule, removed font url and style.css at index.html, and the page speed rose to 84/85;
 
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
+-I resized pizzeria to 1100px width with a compression rate of 10%, and the Mobile/desktop score increased to 91/92.
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
+To Test the Page Speed by using ngrok:(for the uninitiated: for the pagespeed analysis to work, it takes a webpage url-either by the github.io site at the top of this file or through exposing local server through ngrok ; such is not required to use DevTool of Chrome to analyze html page for timelines.)
 
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
+1. First download python and install globally,then at the command prompt of Window,cd to the project directory and enter python -m SimpleHTTPServer 8080;
 
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ngrok 8080
-  ```
+2. Then download ngrok and put it in the project directory, at the same level with the index.html;
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+3. Then double click the ngrok, and follow the prompt from ngrok -or go to another command prompt (this PC/File/open command prompt)- and type in the instructed line such as ngrok.exe http 8080. Tada!You are shown a window.
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+4. Right click the mouse, click "Select all", and then highlight the line after forwarding-resembling  http://aac83ece.ngrok.io, click; open a new Chrome Canary tab, and paste the line in, Tada! There is the web page.
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
+5. Copy the web address to google's pageSpeedInsight site [https://developers.google.com/speed/pagespeed/insights/] to test the page speed.
 
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
+-------------------------------------------------------------------------------------
+To achieve >=60 FPS for pizza.html page:
+--------------------------------------------------------------
+Changes made in main.js and stle.css for better framerate of pizza.html:
 
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+-In makeRandomPizza, I simplified by subsituting NumOfItems (line 340) for NumsOfCheese, NumsOfMeats,etc.
 
-### Sample Portfolios
+-In pizzaElementGenerator (line 373) I moved style.width and style.height reset in main.js to style.css .randomPizzaContainer
 
-Feeling uninspired by the portfolio? Here's a list of cool portfolios I found after a few minutes of Googling.
+-In changePizzaSizes, I changed the pizza size value to a percent width (line 438), removing the codes involving offsetWidth and complicated calculations to improve FPS
 
-* <a href="http://www.reddit.com/r/webdev/comments/280qkr/would_anybody_like_to_post_their_portfolio_site/">A great discussion about portfolios on reddit</a>
-* <a href="http://ianlunn.co.uk/">http://ianlunn.co.uk/</a>
-* <a href="http://www.adhamdannaway.com/portfolio">http://www.adhamdannaway.com/portfolio</a>
-* <a href="http://www.timboelaars.nl/">http://www.timboelaars.nl/</a>
-* <a href="http://futoryan.prosite.com/">http://futoryan.prosite.com/</a>
-* <a href="http://playonpixels.prosite.com/21591/projects">http://playonpixels.prosite.com/21591/projects</a>
-* <a href="http://colintrenter.prosite.com/">http://colintrenter.prosite.com/</a>
-* <a href="http://calebmorris.prosite.com/">http://calebmorris.prosite.com/</a>
-* <a href="http://www.cullywright.com/">http://www.cullywright.com/</a>
-* <a href="http://yourjustlucky.com/">http://yourjustlucky.com/</a>
-* <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
-* <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
-* <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+-I reduced the pizza number to a smaller number 51 in the for loop to populate #randomPizzas (line 456)
+
+-I set the pizza number in document.addEventListener and set the sliding pizza position dynamically (line 519);
+
+-I moved the width and height property of .mover in document.addEventListener (line 513) inside main.js to style.css;I removed "elem.basicLeft = (i % colNum) * colWidth;" , and instead added "flex-wrap:wrap;" to .randomPizzaContainer which contains the .mover pizza objects to ensure proper positioning. In document.addEventListener I also changed the row and col numbers of the sliding pizzas to smaller numbers (lines 517, 518) so that the total pizza number is smaller (at 40).
+
+-I removed updatePositions() from the end of the Event Listener-because it is not needed for the initial load-plus window event listener (line 507) is already set to call it.
+
+-I replaced style.width's reset with style.transform in updatePosition(line 494) to avoid forced synchronous layout; To match I added "will-change:transform; transform:translateZ(0);" to .mover class.
+
+-added "use strict"; at the beginning of the main.js, the purpise is to "changes previously accepted "bad syntax" into real errors."(W3 Schools)
+
+-With the above changes, the average time to generate 1 frame is at around 0.6 ms, less than 1 ms.
+
+After revising per reviewer comments, I add and commit at git gh-pages branch, push to origin; checkout master, git rebase gh-pages, git log to verify fast forward.
+
+To examine timelines for pizza.html: use Ctrl Shift I to open Chrome Dev Tool, click on timeline, click on the Record button to start the recording and then click again to end the recording; examine the timelines and console messages to find FPS (frame per second) and time required for scrolling the pizza page and resizing pizza.
